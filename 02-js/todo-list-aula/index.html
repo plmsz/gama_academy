@@ -4,15 +4,15 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Lista de afazeres</title>
-
+  <!-- <link rel="stylesheet" type="text/css" href="./style.css"> -->
   <script src="./script.js" defer></script>
 </head>
 <body>
     <h1>Todo List</h1>
-     <form class = "container" id="form">
-        <input type="text" id="input">
+     <form class = "container" id="form" data-new-list-form>
+        <input type="text" id="input" data-new-list-input>
         <button id="add">+</button>
      </form>
-     <div class="to-dos" id="todoContainer"></div>
+     <div class="to-dos" id="todoContainer" data-lists></div>
 </body>
 </html>
