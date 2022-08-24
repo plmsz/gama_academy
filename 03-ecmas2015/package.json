@@ -1,0 +1,16 @@
+{
+  "name": "03-ecmas2015",
+  "version": "1.0.0",
+  "description": "Vamos criar um sistema que armazena informações de livros .",
+  "main": "db.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "readline-sync": "^1.4.10"
+  }
+}
