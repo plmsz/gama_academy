@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Via Cep</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css"
+    />
+    <script src="./script.js" defer></script>
+  </head>
+  <body>
+    <main class="container">
+      <h1>Localiza CEP</h1>
+      <input
+        type="text"
+        id="cepInput"
+        placeholder="Digite o cep para inserir o enderenço"
+      />
+      <table>
+        <thead>
+          <th>CEP</th>
+          <th>Estado</th>
+          <th>Cidade</th>
+          <th>Bairro</th>
+          <th>Logradouro</th>
+        </thead>
+        <tbody id="tbody">
+        </tbody>
+      </table>
+    </main>
+    <!-- Modal -->
+    <dialog id="modal">
+      <article>
+        <a
+          href="#close"
+          aria-label="Close"
+          class="close"
+          data-target="modal"
+          id="closeModal"
+        >
+        </a>
+        <h3>Desculpe, houve um erro!</h3>
+        <p>Tente novamente mais tarde.</p>
+      </article>
+    </dialog>
+  </body>
+</html>
