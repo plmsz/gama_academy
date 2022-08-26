@@ -1,0 +1,13 @@
+button:disabled {
+  cursor: not-allowed;
+}
+
+
+
+.done {
+  color: #afee99;
+  font-weight: bold;
+  text-decoration: line-through;
+  text-decoration-color: #98e27d;
+}
+

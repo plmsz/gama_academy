@@ -8,6 +8,7 @@
       rel="stylesheet"
       href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css"
     />
+    <link rel="stylesheet" type="text/css" href="./style.css">
     <script src="./script.js" defer></script>
   </head>
   <body>
@@ -19,7 +20,10 @@
           <button id="add" class="secondary" style="width: 20%">+</button>
         </div>
       </form>
-      <div class="to-dos" id="todoContainer"></div>
+      <div class="to-dos">
+        <ul id="todosContainer">
+        </ul>
+      </div>
     </main>
   </body>
 </html>
