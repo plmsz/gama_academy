@@ -1,18 +1,23 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Lista de afazeres</title>
-
-  <script src="./script.js" defer></script>
-</head>
-<body>
-    <h1>Todo List</h1>
-     <form class = "container" id="form">
-        <input type="text" id="input">
-        <button id="add">+</button>
-     </form>
-     <div class="to-dos" id="todoContainer"></div>
-</body>
+<html lang="pt-br" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Lista de afazeres</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css"
+    />
+    <script src="./script.js" defer></script>
+  </head>
+  <body>
+    <main class="container">
+      <h1>Todo List</h1>
+      <form class="container" id="form">
+        <input type="text" id="input" />
+        <button id="add" class="secondary">+</button>
+      </form>
+      <div class="to-dos" id="todoContainer"></div>
+    </main>
+  </body>
 </html>
