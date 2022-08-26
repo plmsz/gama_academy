@@ -18,6 +18,7 @@
         id="cepInput"
         placeholder="Digite o cep para inserir o enderenço"
       />
+      <small id="helperText"></small>
       <table>
         <thead>
           <th>CEP</th>
@@ -25,10 +26,13 @@
           <th>Cidade</th>
           <th>Bairro</th>
           <th>Logradouro</th>
+          <th></th>
         </thead>
-        <tbody id="tbody">
-        </tbody>
+        <tbody id="tbody"></tbody>
       </table>
+      <button type="button" class="outline" id="clearAll">
+        Remover todos endereços
+      </button>
     </main>
     <!-- Modal -->
     <dialog id="modal">
