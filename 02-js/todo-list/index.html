@@ -8,7 +8,15 @@
       rel="stylesheet"
       href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css"
     />
-    <link rel="stylesheet" type="text/css" href="./style.css">
+    <link rel="stylesheet" type="text/css" href="./style.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0"
+    />
     <script src="./script.js" defer></script>
   </head>
   <body>
@@ -16,13 +24,12 @@
       <h1>Todo List</h1>
       <form id="form">
         <div class="grid">
-          <input type="text" id="input" />
+          <input type="text" id="input" name='add' />
           <button id="add" class="secondary" style="width: 20%">+</button>
         </div>
       </form>
       <div class="to-dos">
-        <ul id="todosContainer">
-        </ul>
+        <ul id="todosContainer"></ul>
       </div>
     </main>
   </body>
