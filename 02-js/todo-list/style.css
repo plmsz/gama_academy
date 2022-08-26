@@ -2,12 +2,19 @@ button:disabled {
   cursor: not-allowed;
 }
 
+li{
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+}
 
-
-.done {
+p.done{
   color: #afee99;
-  font-weight: bold;
+  font-weight: 300;
   text-decoration: line-through;
   text-decoration-color: #98e27d;
 }
 
+li button{
+  width: 25%;
+}
