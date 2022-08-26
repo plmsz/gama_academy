@@ -6,6 +6,7 @@ li {
   cursor: pointer;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 li > div {
@@ -16,10 +17,16 @@ li > div {
   margin-left: 0.4rem;
 }
 
-p.done {
+.subtitle {
+  color: #9bdeee;
+  font-size: small;
+  display: block;
+}
+
+p.done{
   color: #afee99;
-  font-weight: 300;
   text-decoration: line-through;
+  font-weight: 300;
   text-decoration-color: #98e27d;
 }
 

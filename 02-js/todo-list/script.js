@@ -53,6 +53,13 @@ function editTodo() {
         newLiText.textContent = newText;
         newLiText.id = newText;
         li.id = newText;
+
+        const date = new Intl.DateTimeFormat('pt-BR', { year: '2-digit', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric' }).format(new Date());
+        const liDate = document.createElement('span');
+        liDate.classList.add('subtitle');
+        liDate.textContent = `editado em ${date}`;
+        newLiText.appendChild(liDate);
+
         const btnDiv = document.getElementById(`${id}-div`);
         btnDiv.remove();
         createBtnDiv(li, newLiText);
@@ -61,7 +68,7 @@ function editTodo() {
 
         const newList = todoList.map(todo => {
             if (todo.text === id) {
-                return { ...todo, text: newText };
+                return { ...todo, text: newText, date };
             }
             return todo;
         });
@@ -85,16 +92,20 @@ function verifyExistTodo(todo = text, isEditing = false) {
     }
 }
 
+function seeDate() {
+    console.log('22/09/2022');
+}
+
 function createBtnDiv(todoItem, liText) {
     liText.onclick = completeTodo;
-    const id = liText.textContent;
+    const id = liText.id;
     const divBtn = document.createElement('div');
     divBtn.id = `${id}-div`;
     todoItem.appendChild(divBtn);
 
     const removeTodoBtn = document.createElement('button');
     removeTodoBtn.classList.add('outline');
-    removeTodoBtn.id = id
+    removeTodoBtn.id = id;
     removeTodoBtn.innerHTML = '<span class="material-symbols-outlined">delete</span>';
     removeTodoBtn.onclick = removeTodo;
 
@@ -115,17 +126,24 @@ button.addEventListener('click', function (e) {
         return;
     }
 
-    const todo = { text: text, done: false };
+    const date = new Intl.DateTimeFormat('pt-BR', { year: '2-digit', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric' }).format(new Date());
+
+    const todo = { text: text, done: false, date };
     todoList.push(todo);
 
     const liText = document.createElement('p');
+    const liDate = document.createElement('span');
+    liDate.classList.add('subtitle');
     const todoItem = document.createElement('li');
+
+    liDate.textContent = `criado em ${date}`;
     todoItem.id = todoList.at(-1).text;
     liText.id = todoList.at(-1).text;
     liText.textContent = todoList.at(-1).text;
 
     createBtnDiv(todoItem, liText);
     todoItem.insertBefore(liText, todoItem.children[0]);
+    liText.appendChild(liDate);
 
     input.value = '';
     input.focus();
