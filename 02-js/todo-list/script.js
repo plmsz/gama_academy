@@ -1,7 +1,7 @@
 const button = document.getElementById('add');
 const input = document.getElementById('input');
 const todosContainer = document.getElementById('todosContainer');
-
+const select = document.getElementById('filter');
 let todoList = [];
 let text = '';
 input.addEventListener('keyup', function (e) {
@@ -22,7 +22,6 @@ function completeTodo() {
     });
     todoList = [...newList];
 }
-
 function removeTodo() {
     const id = this.id;
     const clicked = todoList.find(todo => todo.text === id);
@@ -68,7 +67,7 @@ function editTodo() {
 
         const newList = todoList.map(todo => {
             if (todo.text === id) {
-                return { ...todo, text: newText, date };
+                return { ...todo, text: newText, date, edited: true };
             }
             return todo;
         });
@@ -78,7 +77,6 @@ function editTodo() {
         inputEdit.removeAttribute('aria-invalid', true);
     });
 }
-
 function verifyExistTodo(todo = text, isEditing = false) {
     const existTodo = todoList.filter(item => item.text === todo);
     if (existTodo.length > 0 || todo === '') {
@@ -91,11 +89,6 @@ function verifyExistTodo(todo = text, isEditing = false) {
         return true;
     }
 }
-
-function seeDate() {
-    console.log('22/09/2022');
-}
-
 function createBtnDiv(todoItem, liText) {
     liText.onclick = completeTodo;
     const id = liText.id;
@@ -119,32 +112,57 @@ function createBtnDiv(todoItem, liText) {
     divBtn.appendChild(editTodoBtn);
     todosContainer.appendChild(todoItem);
 }
+function createItem(todo) {
+   const { text, done, date, edited } = todo
+
+    const liText = document.createElement('p');
+    const liDate = document.createElement('span');
+    done ? liText.classList.add('done') : null
+    liDate.classList.add('subtitle');
+    const todoItem = document.createElement('li');
+
+    liDate.textContent = todo.edited ? `edited in ${date}` : `created at ${date}`;
+    todoItem.id = text;
+    liText.id = text;
+    liText.textContent = text;
+
+    createBtnDiv(todoItem, liText);
+    todoItem.insertBefore(liText, todoItem.children[0]);
+    liText.appendChild(liDate);
+
+}
 button.addEventListener('click', function (e) {
     e.preventDefault();
     const exist = verifyExistTodo();
     if (exist) {
         return;
     }
-
     const date = new Intl.DateTimeFormat('pt-BR', { year: '2-digit', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric' }).format(new Date());
 
-    const todo = { text: text, done: false, date };
+    const todo = { text: text, done: false, date, edited: false };
+
+    createItem(todo);
     todoList.push(todo);
-
-    const liText = document.createElement('p');
-    const liDate = document.createElement('span');
-    liDate.classList.add('subtitle');
-    const todoItem = document.createElement('li');
-
-    liDate.textContent = `criado em ${date}`;
-    todoItem.id = todoList.at(-1).text;
-    liText.id = todoList.at(-1).text;
-    liText.textContent = todoList.at(-1).text;
-
-    createBtnDiv(todoItem, liText);
-    todoItem.insertBefore(liText, todoItem.children[0]);
-    liText.appendChild(liDate);
 
     input.value = '';
     input.focus();
 });
+
+select.addEventListener('change', function (e) {
+    const type = e.target.value;
+    todosContainer.innerHTML = '';
+    let newList = [...todoList];
+
+    if (type === 'done') {
+        newList = todoList.filter(item => item.done);
+    }
+    if (type === 'to-do') {
+        newList = todoList.filter(item => !item.done);
+    }
+   
+    newList.forEach(item => createItem(item))
+});
+
+todosContainer.addEventListener('click', () =>{
+
+})

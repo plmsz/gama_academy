@@ -23,7 +23,7 @@ li > div {
   display: block;
 }
 
-p.done{
+p.done {
   color: #afee99;
   text-decoration: line-through;
   font-weight: 300;
@@ -33,4 +33,11 @@ p.done{
 button.outline {
   font-size: small;
   width: 5rem;
+}
+
+select {
+  width: 40%;
+}
+.hidden {
+  display: none;
 }
