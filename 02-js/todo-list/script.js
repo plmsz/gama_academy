@@ -21,6 +21,15 @@ function completeTodo() {
         return todo;
     });
     todoList = [...newList];
+    const type = select.value;
+
+    if (type === 'done') {
+        filter('done');
+    } else if (type === 'to-do') {
+        filter('to-do');
+    } else {
+        filter('all');
+    }
 }
 function removeTodo() {
     const id = this.id;
@@ -113,11 +122,11 @@ function createBtnDiv(todoItem, liText) {
     todosContainer.appendChild(todoItem);
 }
 function createItem(todo) {
-   const { text, done, date, edited } = todo
+    const { text, done, date, edited } = todo;
 
     const liText = document.createElement('p');
     const liDate = document.createElement('span');
-    done ? liText.classList.add('done') : null
+    done ? liText.classList.add('done') : null;
     liDate.classList.add('subtitle');
     const todoItem = document.createElement('li');
 
@@ -148,8 +157,8 @@ button.addEventListener('click', function (e) {
     input.focus();
 });
 
-select.addEventListener('change', function (e) {
-    const type = e.target.value;
+
+function filter(type) {
     todosContainer.innerHTML = '';
     let newList = [...todoList];
 
@@ -159,10 +168,11 @@ select.addEventListener('change', function (e) {
     if (type === 'to-do') {
         newList = todoList.filter(item => !item.done);
     }
-   
-    newList.forEach(item => createItem(item))
+
+    newList.forEach(item => createItem(item));
+}
+
+select.addEventListener('change', function (e) {
+    const type = e.target.value;
+    filter(type);
 });
-
-todosContainer.addEventListener('click', () =>{
-
-})
