@@ -22,6 +22,7 @@ The classic To-Do application where a user can write down all the things he want
 ## Useful links and resources
 
 -   [localStorage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage)
+- [localStorage - rocket](https://blog.logrocket.com/localstorage-javascript-complete-guide/)
 
 ## Example projects
 

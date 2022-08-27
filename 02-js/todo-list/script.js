@@ -2,14 +2,41 @@ const button = document.getElementById('add');
 const input = document.getElementById('input');
 const todosContainer = document.getElementById('todosContainer');
 const select = document.getElementById('filter');
-let todoList = [];
+
 let text = '';
+let todoList = [];
+
+document.onload = checkLocalStorage();
+
+function checkLocalStorage() {
+    const loadedItens = JSON.parse(window.localStorage.getItem('todos')) ?? '';
+    if(loadedItens){
+        todoList = [...loadedItens];
+        todoList.forEach(item => createItem(item));
+    }
+}
+function setTodoLocalStorage() {
+    window.localStorage.setItem('todos', JSON.stringify(todoList));
+}
+
 input.addEventListener('keyup', function (e) {
     button.disabled = false;
     text = e.target.value;
-    console.log(todoList);
 });
 
+function filter(type) {
+    todosContainer.innerHTML = '';
+    let newList = [...todoList];
+
+    if (type === 'done') {
+        newList = todoList.filter(item => item.done);
+    }
+    if (type === 'to-do') {
+        newList = todoList.filter(item => !item.done);
+    }
+    setTodoLocalStorage();
+    newList.forEach(item => createItem(item));
+}
 function completeTodo() {
     const clicked = todoList.find(todo => todo.text === this.id);
 
@@ -21,6 +48,7 @@ function completeTodo() {
         return todo;
     });
     todoList = [...newList];
+    setTodoLocalStorage();
     const type = select.value;
 
     if (type === 'done') {
@@ -37,6 +65,7 @@ function removeTodo() {
 
     const newList = todoList.filter(todo => todo.text !== clicked.text);
     todoList = [...newList];
+    setTodoLocalStorage();
     document.getElementById(id).remove();
 }
 function editTodo() {
@@ -81,6 +110,7 @@ function editTodo() {
             return todo;
         });
         todoList = [...newList];
+        setTodoLocalStorage();
     });
     inputEdit.addEventListener('keydown', function () {
         inputEdit.removeAttribute('aria-invalid', true);
@@ -151,26 +181,12 @@ button.addEventListener('click', function (e) {
     const todo = { text: text, done: false, date, edited: false };
 
     createItem(todo);
-    todoList.push(todo);
+    todoList.push(todo)
+    setTodoLocalStorage();
 
     input.value = '';
     input.focus();
 });
-
-
-function filter(type) {
-    todosContainer.innerHTML = '';
-    let newList = [...todoList];
-
-    if (type === 'done') {
-        newList = todoList.filter(item => item.done);
-    }
-    if (type === 'to-do') {
-        newList = todoList.filter(item => !item.done);
-    }
-
-    newList.forEach(item => createItem(item));
-}
 
 select.addEventListener('change', function (e) {
     const type = e.target.value;
