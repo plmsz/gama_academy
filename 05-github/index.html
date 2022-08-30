@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pt-br" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Github</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css"
+    />
+  </head>
+  <body>
+    <main class="container">
+      <h1>Repos</h1>
+      <input id="username" type="text" placeholder="Enter GitHub username" />
+      <small id="alertUser"></small>
+      <input type="text" id="repo" placeholder="Search a repo" />
+      <small id="alertRepo"></small>
+      <ol id="container-repo">
+      </ol>
+    </main>
+  </body>
+  <script src="./script.js" type="module"></script>
+</html>
