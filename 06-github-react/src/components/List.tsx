@@ -11,7 +11,7 @@ function List({ items }: ListProps) {
           flexDirection: 'column',
           flexWrap: 'wrap',
           gap: '0.3rem',
-          maxHeight: '430px',
+          maxHeight: '450px',
         }}
       >
         {items?.map((item) => (
