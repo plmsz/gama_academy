@@ -1,36 +1,57 @@
-import React, { ChangeEvent, FormEvent, useState } from 'react';
+import React, { ChangeEvent, FormEvent, useCallback, useState } from 'react';
 
 import { Link } from 'react-router-dom';
+import { api } from '../../services/api';
+
+interface IData {
+  name: string;
+  email: string;
+}
 
 const Contact: React.FC = () => {
-  const [form, setForm] = useState({ name: '', email: '' });
+  const [data, setData] = useState<IData>({} as IData);
+  const [submit, setSubmit] = useState(false);
+
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    setData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
-  const handleSubmit = (e: FormEvent) => {
-    e.preventDefault();
-    alert(JSON.stringify(form));
-  };
+  const handleSubmit = useCallback(
+    (e: FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+      // alert(JSON.stringify(form));
+      api.post('', data).then((response) => {
+        if (response.status === 200) {
+          setSubmit(true);
+        }
+      });
+    },
+    [data]
+  );
+
   return (
     <>
       <h1>Contato</h1>
-      <form name='contact'>
-        <input
-          type='text'
-          name='name'
-          placeholder='Nome'
-          onChange={handleChange}
-        />
-        <input
-          type='email'
-          name='email'
-          placeholder='E-mail'
-          onChange={handleChange}
-        />
-        <button onClick={handleSubmit} type='submit'>
-          Cadastrar
-        </button>
-      </form>
+      {submit ? (
+        <div>
+          <h1>Obrigado pelo envio do dados!</h1>
+        </div>
+      ) : (
+        <form name='contact' onSubmit={handleSubmit}>
+          <input
+            type='text'
+            name='name'
+            placeholder='Nome'
+            onChange={handleChange}
+          />
+          <input
+            type='email'
+            name='email'
+            placeholder='E-mail'
+            onChange={handleChange}
+          />
+          <button type='submit'>Cadastrar</button>
+        </form>
+      )}
       <Link to='/'>Ir Home</Link>
     </>
   );
