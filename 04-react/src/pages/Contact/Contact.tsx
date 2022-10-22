@@ -1,14 +1,13 @@
-import React, { useState } from 'react';
+import React, { ChangeEvent, FormEvent, useState } from 'react';
 
-// import { Container } from './styles';
 import { Link } from 'react-router-dom';
 
 const Contact: React.FC = () => {
-  const [form, setForm] = useState();
-  const handleChange = (e) => {
+  const [form, setForm] = useState({ name: '', email: '' });
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     alert(JSON.stringify(form));
   };
