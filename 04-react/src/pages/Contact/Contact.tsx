@@ -18,7 +18,7 @@ const Contact: React.FC = () => {
   const handleSubmit = useCallback(
     (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault();
-      // alert(JSON.stringify(form));
+      // alert(JSON.stringify(data));
       api.post('', data).then((response) => {
         if (response.status === 200) {
           setSubmit(true);
