@@ -1,33 +1,32 @@
 import React, { useState, useCallback, FormEvent, ChangeEvent } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import { api } from '../../services/api';
 import { toast } from 'react-toastify';
 import Loader from '../../Loader';
-import { Container } from '../../styles/global';
 
 interface IData {
-  nome: string;
   email: string;
   senha: string;
 }
 
 const SignIn: React.FC = () => {
   const [data, setData] = useState<IData>({} as IData);
-  const [load, setLoad] = useState(true);
+  const [load, setLoad] = useState(false);
   const history = useHistory();
 
   const handleSubmit = useCallback(
     (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault();
-      console.log(data);
       setLoad(true);
       api
-        .post('users', data)
+        .post('session', data)
         .then((response) => {
+          // const sessionToken = JSON.stringify(response.data.token);
+          // localStorage.setItem('@gamaServiceToken', sessionToken);
           setLoad(false);
-          toast.success('Cadastro realizado com sucesso!', {
+          toast.success('Sucesso!', {
             hideProgressBar: false,
-            onClose: () => history.push('/signin'),
+            onClose: () => history.push('/dasboard'),
           });
         })
         .catch((e) => {
@@ -47,14 +46,8 @@ const SignIn: React.FC = () => {
         <Loader />
       ) : (
         <>
-          <h1>Login</h1>
+          <h1>Entrar</h1>
           <form name='contact' onSubmit={handleSubmit}>
-            <input
-              type='text'
-              name='nome'
-              placeholder='Nome'
-              onChange={handleChange}
-            />
             <input
               type='email'
               name='email'
@@ -67,7 +60,8 @@ const SignIn: React.FC = () => {
               placeholder='Senha'
               onChange={handleChange}
             />
-            <button type='submit'>Cadastrar</button>
+            <button type='submit'>Entrar</button>
+            <Link to='signup'>Não tem cadastro? Faça agora!</Link>
           </form>
         </>
       )}
