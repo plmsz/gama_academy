@@ -7,7 +7,7 @@ interface IData {
   name: string;
   email: string;
 }
-
+//TODO: usar um serviço de email
 const Contact: React.FC = () => {
   const [data, setData] = useState<IData>({} as IData);
   const [submit, setSubmit] = useState(false);
@@ -18,8 +18,7 @@ const Contact: React.FC = () => {
   const handleSubmit = useCallback(
     (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault();
-      // alert(JSON.stringify(data));
-      api.post('', data).then((response) => {
+      api.post('contact', data).then((response) => {
         if (response.status === 200) {
           setSubmit(true);
         }
