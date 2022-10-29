@@ -3,6 +3,7 @@ import { Link, useHistory } from 'react-router-dom';
 import { api } from '../../services/api';
 import { toast } from 'react-toastify';
 import Loader from '../../Loader';
+import { Container } from './style';
 
 interface IData {
   nome: string;
@@ -40,7 +41,7 @@ const SignUp: React.FC = () => {
   };
 
   return (
-    <>
+    <Container>
       {load ? (
         <Loader />
       ) : (
@@ -73,7 +74,7 @@ const SignUp: React.FC = () => {
           </form>
         </>
       )}
-    </>
+    </Container>
   );
 };
 

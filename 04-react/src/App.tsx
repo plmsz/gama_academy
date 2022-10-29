@@ -7,11 +7,11 @@ import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (
-    <main className='container'>
+    <>
       <GlobalStyles />
-        <Routes />
+      <Routes />
       <ToastContainer theme='dark' />
-    </main>
+    </>
   );
 }
 

@@ -3,6 +3,7 @@ import { useHistory, Link } from 'react-router-dom';
 import { api } from '../../services/api';
 import { toast } from 'react-toastify';
 import Loader from '../../Loader';
+import { Container } from './style';
 
 interface IData {
   email: string;
@@ -42,7 +43,7 @@ const SignIn: React.FC = () => {
   };
 
   return (
-    <>
+    <Container>
       {load ? (
         <Loader />
       ) : (
@@ -68,7 +69,7 @@ const SignIn: React.FC = () => {
           </form>
         </>
       )}
-    </>
+    </Container>
   );
 };
 
