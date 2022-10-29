@@ -3,7 +3,7 @@ import { useHistory, Link } from 'react-router-dom';
 import { api } from '../../services/api';
 import { toast } from 'react-toastify';
 import Loader from '../../Loader';
-import { Container } from './style';
+import { Container } from '../../styles/common';
 
 interface IData {
   email: string;
