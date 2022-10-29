@@ -1,18 +1,12 @@
 {
   "users": [
     {
-      "nome": "huih",
-      "email": "hhu@m.com",
-      "senha": "huihuki",
+      "email": "p@m.com",
+      "password": "$2a$10$dsvxayLNCjF6Q.WSYuTtp.cDRHvJ5SWoIfCJ2NJ528KIiYTaInSmK",
+      "nome": "Paloma",
       "id": 1
-    },
-    {
-      "nome": "jioji",
-      "email": "jijiklo@m.com",
-      "senha": "jioji",
-      "id": 2
     }
   ],
-  "session": [{}],
+  "login": [],
   "contact": []
 }

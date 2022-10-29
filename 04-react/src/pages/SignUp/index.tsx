@@ -31,7 +31,7 @@ const SignUp: React.FC = () => {
         .catch((e) => {
           toast.error('Algo deu errado, tente novamente.');
         })
-        .finally(()=>setLoad(false))
+        .finally(() => setLoad(false));
     },
     [data, history]
   );
@@ -52,18 +52,21 @@ const SignUp: React.FC = () => {
               name='nome'
               placeholder='Nome'
               onChange={handleChange}
+              required
             />
             <input
               type='email'
               name='email'
               placeholder='E-mail'
               onChange={handleChange}
+              required
             />
             <input
               type='password'
-              name='senha'
+              name='password'
               placeholder='Senha'
               onChange={handleChange}
+              required
             />
             <button type='submit'>Cadastrar</button>
             <Link to='signin'>Já tem cadastro? Faça o log-in.</Link>

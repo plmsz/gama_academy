@@ -19,17 +19,18 @@ const SignIn: React.FC = () => {
       e.preventDefault();
       setLoad(true);
       api
-        .post('session', data)
+        .post('login', data)
         .then((response) => {
-          // const sessionToken = JSON.stringify(response.data.token);
-          // localStorage.setItem('@gamaServiceToken', sessionToken);
+          const sessionToken = JSON.stringify(response.data.accessToken);
+          localStorage.setItem('@gamaServiceToken', sessionToken);
           setLoad(false);
           toast.success('Sucesso!', {
             hideProgressBar: false,
-            onClose: () => history.push('/dasboard'),
+            onClose: () => history.push('/dash'),
           });
         })
         .catch((e) => {
+          //TODO: "Incorrect password" "Cannot find user"
           toast.error('Algo deu errado, tente novamente.');
           setLoad(false);
         });
@@ -53,12 +54,14 @@ const SignIn: React.FC = () => {
               name='email'
               placeholder='E-mail'
               onChange={handleChange}
+              required
             />
             <input
               type='password'
-              name='senha'
+              name='password'
               placeholder='Senha'
               onChange={handleChange}
+              required
             />
             <button type='submit'>Entrar</button>
             <Link to='signup'>Não tem cadastro? Faça agora!</Link>
