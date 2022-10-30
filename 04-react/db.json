@@ -8,5 +8,24 @@
     }
   ],
   "login": [],
-  "contact": []
+  "collaborator": [
+    {
+      "id": 1,
+      "name": "Sam",
+      "email": "sam@gmail.com",
+      "photo_id": 1,
+      "photo": {
+        "url": "http://placeimg.com/300/300/people"
+      }
+    },
+    {
+      "id": 2,
+      "name": "Sandy",
+      "email": "sandy@gmail.com",
+      "photo_id": 3,
+      "photo": {
+        "url": "http://placeimg.com/301/300/people"
+      }
+    }
+  ]
 }

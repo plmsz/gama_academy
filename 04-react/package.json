@@ -25,7 +25,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "api": "json-server --watch ./db.json --port 8080 --delay 750 -m ./node_modules/json-server-auth",
+    "api": "json-server --watch ./db.json --port 8080 --delay 750 -m ./node_modules/json-server-auth --routes routes.json",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
