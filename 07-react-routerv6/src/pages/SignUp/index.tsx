@@ -1,5 +1,5 @@
 import React, { useState, useCallback, FormEvent, ChangeEvent } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { api } from '../../services/api';
 import { toast } from 'react-toastify';
 import Loader from '../../Loader';
@@ -14,7 +14,7 @@ interface IData {
 const SignUp: React.FC = () => {
   const [data, setData] = useState<IData>({} as IData);
   const [load, setLoad] = useState(false);
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const handleSubmit = useCallback(
     (e: FormEvent<HTMLFormElement>) => {
@@ -26,16 +26,15 @@ const SignUp: React.FC = () => {
           setLoad(false);
           toast.success('Cadastro realizado com sucesso!', {
             hideProgressBar: false,
-            onClose: () => history.push('/'),
+            onClose: () => navigate('/'),
           });
         })
         .catch((e) => {
-          // "Email already exists"
           toast.error('Algo deu errado, tente novamente.');
         })
         .finally(() => setLoad(false));
     },
-    [data, history]
+    [data, navigate]
   );
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -71,7 +70,7 @@ const SignUp: React.FC = () => {
               required
             />
             <button type='submit'>Cadastrar</button>
-            <Link to='signin'>Já tem cadastro? Faça o log-in.</Link>
+            <Link to='/signin'>Já tem cadastro? Faça o log-in.</Link>
           </form>
         </>
       )}

@@ -1,41 +1,42 @@
 import React, { useState, useCallback, FormEvent, ChangeEvent } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { api } from '../../services/api';
 import { toast } from 'react-toastify';
 import Loader from '../../Loader';
 import { Container } from '../../styles/common';
 
 interface IData {
-  nome: string;
   email: string;
   senha: string;
 }
 
-const SignUp: React.FC = () => {
+const SignIn: React.FC = () => {
   const [data, setData] = useState<IData>({} as IData);
   const [load, setLoad] = useState(false);
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const handleSubmit = useCallback(
     (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault();
       setLoad(true);
       api
-        .post('users', data)
+        .post('login', data)
         .then((response) => {
+          const sessionToken = JSON.stringify(response.data.accessToken);
+          localStorage.setItem('@gamaServiceToken', sessionToken);
           setLoad(false);
-          toast.success('Cadastro realizado com sucesso!', {
+          toast.success('Sucesso!', {
             hideProgressBar: false,
-            onClose: () => history.push('/'),
+            onClose: () => navigate('/dash'),
           });
         })
         .catch((e) => {
-          // "Email already exists"
+          //TODO: "Incorrect password" "Cannot find user"
           toast.error('Algo deu errado, tente novamente.');
-        })
-        .finally(() => setLoad(false));
+          setLoad(false);
+        });
     },
-    [data, history]
+    [data, navigate]
   );
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -47,15 +48,8 @@ const SignUp: React.FC = () => {
         <Loader />
       ) : (
         <>
-          <h1>Cadastre-se</h1>
+          <h1>Entrar</h1>
           <form name='contact' onSubmit={handleSubmit}>
-            <input
-              type='text'
-              name='nome'
-              placeholder='Nome'
-              onChange={handleChange}
-              required
-            />
             <input
               type='email'
               name='email'
@@ -70,8 +64,8 @@ const SignUp: React.FC = () => {
               onChange={handleChange}
               required
             />
-            <button type='submit'>Cadastrar</button>
-            <Link to='signin'>Já tem cadastro? Faça o log-in.</Link>
+            <button type='submit'>Entrar</button>
+            <Link to='signup'>Não tem cadastro? Faça agora!</Link>
           </form>
         </>
       )}
@@ -79,4 +73,4 @@ const SignUp: React.FC = () => {
   );
 };
 
-export default SignUp;
+export default SignIn;

@@ -1,0 +1,24 @@
+{
+  "users": [
+    {
+      "email": "p@m.com",
+      "password": "$2a$10$dsvxayLNCjF6Q.WSYuTtp.cDRHvJ5SWoIfCJ2NJ528KIiYTaInSmK",
+      "nome": "Paloma",
+      "id": 1
+    },
+    {
+      "email": "c@m.com",
+      "password": "$2a$10$89N.l8fdwvo/olKRLJOSNe0VspkI533scZbZZaHJrBfPfkWuWhHAm",
+      "nome": "carol",
+      "id": 2
+    },
+    {
+      "email": "pa@m.com",
+      "password": "$2a$10$lt6FNEEF50BzEoT5Y72Bm.rCZIMGSNHGdvaxHkzyYCDnwR2v2LpIa",
+      "nome": "pal",
+      "id": 3
+    }
+  ],
+  "login": [],
+  "contact": []
+}
